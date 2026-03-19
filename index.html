@@ -2,18 +2,24 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>StockVison · Gestion de stock intelligente</title>
-    <!-- Favicon (logo) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="StockVison.ico">
     <!-- Google Fonts & Font Awesome -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* RESET & BASE */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -21,23 +27,31 @@
             background: #0a0c0f;
             color: #e5e7eb;
             line-height: 1.5;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 1.5rem;
         }
 
-        /* Header avec menu amélioré */
+        /* TYPOGRAPHIE ADAPTATIVE */
+        h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+        h2 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+        h3 { font-size: clamp(1.3rem, 4vw, 1.5rem); }
+        p { font-size: clamp(0.95rem, 3vw, 1rem); }
+
+        /* HEADER + MENU */
         .header {
-            background: rgba(10, 12, 15, 0.9);
+            background: rgba(10, 12, 15, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid #1f2a3f;
             position: sticky;
             top: 0;
             z-index: 100;
+            width: 100%;
         }
 
         .header .container {
@@ -50,9 +64,9 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.6rem;
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: white;
             text-decoration: none;
         }
@@ -60,6 +74,7 @@
         .logo img {
             height: 40px;
             width: auto;
+            max-width: 100%;
         }
 
         .nav ul {
@@ -74,7 +89,9 @@
             text-decoration: none;
             color: #9ca3af;
             font-weight: 500;
+            font-size: 1rem;
             transition: color 0.2s;
+            white-space: nowrap;
         }
 
         .nav-link::after {
@@ -103,16 +120,16 @@
             background: none;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
-            transition: transform 0.2s;
             z-index: 101;
+            transition: transform 0.2s;
         }
 
-        /* Boutons */
+        /* BOUTONS */
         .btn {
             display: inline-block;
-            padding: 12px 28px;
+            padding: 0.8rem 1.8rem;
             border-radius: 40px;
             font-weight: 600;
             text-decoration: none;
@@ -120,6 +137,7 @@
             border: none;
             cursor: pointer;
             font-size: 0.95rem;
+            text-align: center;
         }
 
         .btn-primary {
@@ -146,21 +164,23 @@
             color: #a78bfa;
         }
 
-        /* Hero */
+        /* HERO */
         .hero {
-            padding: 80px 0 60px;
+            padding: 4rem 0 3rem;
         }
 
         .hero .container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 2rem;
             align-items: center;
         }
 
+        .hero-content {
+            text-align: left;
+        }
+
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
             line-height: 1.2;
             background: linear-gradient(to right, white, #c4b5fd);
             -webkit-background-clip: text;
@@ -170,7 +190,7 @@
         .hero .subtitle {
             font-size: 1.2rem;
             color: #9ca3af;
-            margin: 20px 0;
+            margin: 1rem 0;
         }
 
         .hero .highlight {
@@ -180,40 +200,36 @@
 
         .hero-buttons {
             display: flex;
-            gap: 16px;
-            margin-top: 30px;
+            gap: 1rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
         }
 
         .hero-image {
             background: #151a24;
             border-radius: 24px;
-            padding: 30px;
+            padding: 2rem;
             text-align: center;
             border: 1px solid #2a3440;
             box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
         }
 
         .hero-image i {
-            font-size: 180px;
+            font-size: clamp(120px, 15vw, 180px);
             color: #8b5cf6;
             opacity: 0.9;
         }
 
-        /* Sections */
+        /* SECTIONS */
         section {
-            padding: 70px 0;
-        }
-
-        section:nth-child(even) {
-            background: #0b0f15;
+            padding: 4rem 0;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
             font-weight: 700;
-            margin-bottom: 50px;
+            margin-bottom: 3rem;
         }
 
         .section-title span {
@@ -222,18 +238,18 @@
             padding-bottom: 4px;
         }
 
-        /* Features grid */
+        /* FEATURES GRID */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            gap: 1.5rem;
         }
 
         .feature-card {
             background: #151a24;
             border: 1px solid #2a3440;
             border-radius: 20px;
-            padding: 30px 24px;
+            padding: 2rem 1.5rem;
             transition: transform 0.2s, border-color 0.2s;
         }
 
@@ -245,20 +261,10 @@
         .feature-icon {
             font-size: 2.5rem;
             color: #8b5cf6;
-            margin-bottom: 20px;
+            margin-bottom: 1rem;
         }
 
-        .feature-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-            color: white;
-        }
-
-        .feature-card p {
-            color: #9ca3af;
-        }
-
-        /* Terminal Demo */
+        /* TERMINAL DEMO */
         .chat-demo {
             max-width: 700px;
             margin: 0 auto;
@@ -271,9 +277,9 @@
 
         .terminal-header {
             background: #1f2937;
-            padding: 12px 20px;
+            padding: 0.8rem 1.5rem;
             display: flex;
-            gap: 8px;
+            gap: 0.5rem;
             border-bottom: 1px solid #374151;
         }
 
@@ -283,61 +289,51 @@
             border-radius: 50%;
             background: #ef4444;
         }
-
-        .terminal-header span:nth-child(2) {
-            background: #f59e0b;
-        }
-
-        .terminal-header span:nth-child(3) {
-            background: #10b981;
-        }
+        .terminal-header span:nth-child(2) { background: #f59e0b; }
+        .terminal-header span:nth-child(3) { background: #10b981; }
 
         .terminal-body {
-            padding: 20px;
+            padding: 1.5rem;
             font-family: 'Courier New', monospace;
-            font-size: 0.95rem;
-            min-height: 300px;
-            max-height: 400px;
+            font-size: 0.9rem;
+            min-height: 250px;
+            max-height: 350px;
             overflow-y: auto;
             color: #d1d5db;
             background: #0b0f15;
         }
 
         .log-line {
-            margin-bottom: 10px;
+            margin-bottom: 0.8rem;
             border-left: 2px solid #8b5cf6;
-            padding-left: 12px;
+            padding-left: 0.8rem;
             animation: fadeIn 0.3s;
+            word-break: break-word;
         }
 
         .log-time {
             color: #6b7280;
-            margin-right: 12px;
+            margin-right: 0.8rem;
+            font-size: 0.8rem;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Screenshots */
+        /* SCREENSHOTS */
         .screenshots-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
 
         .screenshot-item {
             background: #151a24;
             border: 1px solid #2a3440;
             border-radius: 16px;
-            padding: 20px;
+            padding: 1.5rem;
             text-align: center;
         }
 
@@ -350,92 +346,90 @@
             justify-content: center;
             color: #8b5cf6;
             font-size: 3rem;
-            margin-bottom: 12px;
+            margin-bottom: 1rem;
         }
 
-        /* Technologies */
+        /* TECHNOLOGIES */
         .tech-list {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 16px;
+            gap: 0.8rem 1rem;
         }
 
         .tech-item {
             background: #151a24;
             border: 1px solid #2a3440;
-            padding: 8px 24px;
+            padding: 0.5rem 1.5rem;
             border-radius: 40px;
             color: #e5e7eb;
             font-weight: 500;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
+            font-size: 0.9rem;
         }
 
-        .tech-item i {
-            color: #8b5cf6;
-        }
-
-        /* News */
+        /* NEWS */
         .news-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
         }
 
         .news-item {
             background: #151a24;
             border: 1px solid #2a3440;
             border-radius: 16px;
-            padding: 20px;
+            padding: 1.5rem;
         }
 
         .news-item h3 {
             color: #8b5cf6;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
         }
 
         .news-item small {
             color: #6b7280;
         }
 
-        /* Download */
+        /* DOWNLOAD */
         .download-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin: 40px 0 20px;
+            margin: 2rem 0 1rem;
         }
 
-        /* Contact */
+        /* CONTACT */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
+            gap: 2rem;
             align-items: start;
         }
 
-        .contact-info {
+        .contact-info, .contact-form {
             background: #151a24;
             border: 1px solid #2a3440;
             border-radius: 24px;
-            padding: 40px;
+            padding: 2rem;
         }
 
         .contact-info h3 {
             font-size: 1.8rem;
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
             color: white;
         }
 
         .contact-detail {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            word-break: break-word;
         }
 
         .contact-detail i {
@@ -447,7 +441,8 @@
             align-items: center;
             justify-content: center;
             color: #8b5cf6;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .contact-detail a {
@@ -460,20 +455,13 @@
             color: #8b5cf6;
         }
 
-        .contact-form {
-            background: #151a24;
-            border: 1px solid #2a3440;
-            border-radius: 24px;
-            padding: 40px;
-        }
-
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
             color: #d1d5db;
             font-weight: 500;
         }
@@ -481,7 +469,7 @@
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 14px 16px;
+            padding: 0.9rem 1rem;
             background: #1f2937;
             border: 1px solid #374151;
             border-radius: 12px;
@@ -499,23 +487,23 @@
 
         .btn-submit {
             width: 100%;
-            padding: 14px;
+            padding: 1rem;
             font-size: 1.1rem;
         }
 
-        /* Footer */
+        /* FOOTER */
         .footer {
             border-top: 1px solid #1f2a3f;
-            padding: 40px 0;
+            padding: 2rem 0;
             text-align: center;
             color: #6b7280;
         }
 
         .footer .social-links {
-            margin-top: 20px;
+            margin-top: 1rem;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 1.5rem;
         }
 
         .footer .social-links a {
@@ -528,8 +516,24 @@
             color: #8b5cf6;
         }
 
-        /* Responsive pour menu mobile */
+        /* MEDIA QUERIES */
+        @media (max-width: 1024px) {
+            .container { padding: 0 2rem; }
+            .hero .container { gap: 1.5rem; }
+        }
+
+        @media (max-width: 900px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content { text-align: center; }
+            .hero-buttons { justify-content: center; }
+            .hero-image { max-width: 500px; margin: 0 auto; }
+        }
+
         @media (max-width: 768px) {
+            /* Menu mobile */
             .nav {
                 position: fixed;
                 top: 70px;
@@ -541,7 +545,7 @@
                 backdrop-filter: blur(10px);
                 border-right: 1px solid #1f2a3f;
                 transition: left 0.3s ease;
-                padding: 2rem;
+                padding: 2rem 1.5rem;
                 box-shadow: 5px 0 20px rgba(0,0,0,0.5);
                 z-index: 99;
             }
@@ -552,12 +556,12 @@
 
             .nav ul {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1.5rem;
             }
 
             .nav-link {
-                font-size: 1.2rem;
-                display: inline-block;
+                font-size: 1.1rem;
+                white-space: normal;
             }
 
             .menu-toggle {
@@ -571,30 +575,38 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0,0,0,0.5);
-                opacity: 1;
-                visibility: visible;
+                background: rgba(0,0,0,0.6);
                 z-index: 98;
                 pointer-events: auto;
-                transition: opacity 0.3s, visibility 0.3s;
-            }
-
-            .hero .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 2.8rem;
             }
 
             .contact-grid {
                 grid-template-columns: 1fr;
             }
+
+            .download-buttons .btn {
+                width: 100%;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 1.2rem; }
+            .hero { padding: 2.5rem 0; }
+            .hero-buttons .btn {
+                width: 100%;
+            }
+            .feature-card { padding: 1.5rem; }
+            .screenshots-grid { grid-template-columns: 1fr; }
+            .news-container { grid-template-columns: 1fr; }
+            .contact-info, .contact-form { padding: 1.5rem; }
+            .contact-detail { flex-wrap: wrap; }
+        }
+
+        /* UTILS */
+        img {
+            max-width: 100%;
+            height: auto;
         }
     </style>
 </head>
@@ -623,7 +635,7 @@
     </header>
 
     <main>
-        <!-- Hero -->
+        <!-- HERO -->
         <section id="accueil" class="hero">
             <div class="container">
                 <div class="hero-content">
@@ -641,7 +653,7 @@
             </div>
         </section>
 
-        <!-- Fonctionnalités -->
+        <!-- FONCTIONNALITÉS -->
         <section id="fonctionnalites">
             <div class="container">
                 <h2 class="section-title"><span>Fonctionnalités</span> clés</h2>
@@ -656,7 +668,7 @@
             </div>
         </section>
 
-        <!-- Démo Terminal -->
+        <!-- DÉMO TERMINAL -->
         <section id="demo" style="background: #0b0f15;">
             <div class="container">
                 <h2 class="section-title">Démonstration <span>en direct</span></h2>
@@ -672,11 +684,11 @@
                         <div class="log-line"><span class="log-time">[10:15:27]</span> DeepSeek : Analyse en cours...</div>
                     </div>
                 </div>
-                <p style="text-align:center; color:#6b7280; margin-top:16px;">Simulation en temps réel des interactions avec l'assistant.</p>
+                <p style="text-align:center; color:#6b7280; margin-top:1rem;">Simulation en temps réel des interactions avec l'assistant.</p>
             </div>
         </section>
 
-        <!-- Aperçu -->
+        <!-- APERÇU -->
         <section id="screenshots">
             <div class="container">
                 <h2 class="section-title"><span>Aperçu</span> de l'application</h2>
@@ -686,11 +698,11 @@
                     <div class="screenshot-item"><div class="screenshot-placeholder"><i class="fas fa-chart-bar"></i></div><p>Analyses</p></div>
                     <div class="screenshot-item"><div class="screenshot-placeholder"><i class="fas fa-comment-dots"></i></div><p>Chatbot</p></div>
                 </div>
-                <p style="text-align:center; margin-top:20px;"><em>Remplacez ces placeholders par vos captures d'écran réelles.</em></p>
+                <p style="text-align:center; margin-top:1.5rem;"><em>Remplacez ces placeholders par vos captures d'écran réelles.</em></p>
             </div>
         </section>
 
-        <!-- Technologies -->
+        <!-- TECHNOLOGIES -->
         <section id="technologies" style="background: #0b0f15;">
             <div class="container">
                 <h2 class="section-title"><span>Technologies</span> utilisées</h2>
@@ -705,7 +717,7 @@
             </div>
         </section>
 
-        <!-- Actualités -->
+        <!-- ACTUALITÉS -->
         <section id="news">
             <div class="container">
                 <h2 class="section-title">Dernières <span>actualités</span></h2>
@@ -717,26 +729,25 @@
             </div>
         </section>
 
-        <!-- Téléchargement -->
+        <!-- TÉLÉCHARGEMENT -->
         <section id="download" style="background: #0b0f15;">
             <div class="container">
                 <h2 class="section-title">Télécharger <span>l'application</span></h2>
-                <p style="text-align:center; margin-bottom:20px;">Version 1.0.0 – Mars 2025</p>
+                <p style="text-align:center; margin-bottom:1.5rem;">Version 1.0.0 – Mars 2025</p>
                 <div class="download-buttons">
-                    <a href="StockVison.zip" class="btn btn-primary" onclick="alert('Lien à configurer')"><i class="fab fa-windows"></i> Windows</a>
+                    <a href="./StockVison.zip" class="btn btn-primary" onclick="alert('Lien à configurer')"><i class="fab fa-windows"></i> Windows</a>
                     <a href="#" class="btn btn-primary" onclick="alert('Lien à configurer')"><i class="fab fa-apple"></i> macOS</a>
                     <a href="#" class="btn btn-primary" onclick="alert('Lien à configurer')"><i class="fab fa-linux"></i> Linux</a>
                 </div>
-                <p class="download-info"><small>Exécutables disponibles prochainement.</small></p>
+                <p class="download-info" style="text-align:center; color:#6b7280;"><small>Exécutables disponibles prochainement.</small></p>
             </div>
         </section>
 
-        <!-- Contact -->
+        <!-- CONTACT -->
         <section id="contact">
             <div class="container">
                 <h2 class="section-title">Contactez-<span>nous</span></h2>
                 <div class="contact-grid">
-                    <!-- Coordonnées -->
                     <div class="contact-info">
                         <h3>Restons en contact</h3>
                         <div class="contact-detail">
@@ -751,9 +762,8 @@
                             <i class="fab fa-linkedin"></i>
                             <a href="https://linkedin.com/in/samou-megharba" target="_blank">linkedin.com/in/samou-megharba</a>
                         </div>
-                        <p style="margin-top: 30px; color: #9ca3af;">Ou écrivez-nous directement via le formulaire.</p>
+                        <p style="margin-top: 2rem; color: #9ca3af;">Ou écrivez-nous directement via le formulaire.</p>
                     </div>
-                    <!-- Formulaire Formspree -->
                     <form class="contact-form" action="https://formspree.io/f/mbdzwadz" method="POST">
                         <div class="form-group">
                             <label>Nom</label>
@@ -807,7 +817,7 @@
             });
         });
 
-        // Fermer le menu si on clique sur l'overlay (body.menu-open)
+        // Fermer le menu si on clique sur l'overlay
         document.addEventListener('click', (e) => {
             if (body.classList.contains('menu-open') && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
                 nav.classList.remove('active');
@@ -816,7 +826,7 @@
             }
         });
 
-        // Smooth scroll
+        // Smooth scroll pour tous les ancres
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -827,7 +837,7 @@
             });
         });
 
-        // Highlight du lien actif au scroll
+        // Surlignage du lien actif au scroll
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]');
             let scrollY = window.pageYOffset;
