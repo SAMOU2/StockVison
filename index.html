@@ -429,7 +429,6 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
             font-size: 1rem;
-            word-break: break-word;
         }
 
         .contact-detail i {
@@ -449,6 +448,7 @@
             color: #e5e7eb;
             text-decoration: none;
             transition: color 0.2s;
+            word-break: break-word; /* Permet de couper les longs liens */
         }
 
         .contact-detail a:hover {
@@ -600,7 +600,15 @@
             .screenshots-grid { grid-template-columns: 1fr; }
             .news-container { grid-template-columns: 1fr; }
             .contact-info, .contact-form { padding: 1.5rem; }
-            .contact-detail { flex-wrap: wrap; }
+            /* Pas de flex-wrap pour .contact-detail, on garde l'alignement horizontal */
+            .contact-detail {
+                gap: 0.8rem;
+            }
+            .contact-detail i {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
         }
 
         /* UTILS */
